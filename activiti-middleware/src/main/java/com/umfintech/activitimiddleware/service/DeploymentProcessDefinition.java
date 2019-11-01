@@ -5,8 +5,6 @@ import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.repository.Deployment;
-import org.junit.Assert;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,15 +28,10 @@ public class DeploymentProcessDefinition {
                     //.addClasspathResource("diagrams/" + name + ".png") //从classpath的资源中加载，一次只能加载一个文件
                     .deploy();
         } catch (ActivitiIllegalArgumentException e) {
-            logger.error("[部署失败]" + e.getMessage());
+            logger.error("[部署失败] " + e.getMessage());
             return false;
         }
         logger.info("[部署成功] ID：" + deployment.getId() + ", 名称：" + deployment.getName());
         return true;
-    }
-
-    @Test
-    public void test_deploymentProcessDefinition_classpath(){
-        Assert.assertEquals(false, this.deploymentProcessDefinition_classpath("aaa"));
     }
 }

@@ -4,24 +4,34 @@ package com.umfintech.activitimiddleware.service;
 import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * @description 部署流程
  * @author wangyu
  * @date 2019/11/1 10:46
  */
-public class DeploymentProcessDefinition {
+public class ProcessDefinitionHandler {
 
-    private Logger logger = LoggerFactory.getLogger(DeploymentProcessDefinition.class);
+    private Logger logger = LoggerFactory.getLogger(ProcessDefinitionHandler.class);
     private ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+    private RepositoryService repositoryService = processEngine.getRepositoryService();
 
+    /**
+     * @description 部署流程模板
+     * @param name
+     * @return
+     */
     public boolean deploymentProcessDefinition_classpath(String name){
         Deployment deployment = null;//完成部署
         try {
-            deployment = processEngine.getRepositoryService()//与流程定义和部署对象相关的Service
+            deployment = repositoryService //与流程定义和部署对象相关的Service
                     .createDeployment()//创建一个部署对象
                     .name(name)//添加部署的名称
                     .addClasspathResource("diagrams/" + name + ".bpmn") //从classpath的资源中加载，一次只能加载一个文件
@@ -33,5 +43,17 @@ public class DeploymentProcessDefinition {
         }
         logger.info("[部署成功] ID：" + deployment.getId() + ", 名称：" + deployment.getName());
         return true;
+    }
+
+    /**
+     * @description 查询所有流程模板
+     * @return
+     */
+    public List<ProcessDefinition> getAllProcessDefinition() {
+        List<ProcessDefinition> list = processEngine.getRepositoryService()//与流程定义和部署对象相关的Service
+                .createProcessDefinitionQuery()//创建一个流程定义的查询
+                .list();
+        logger.info("[查询全部流程模板] 共 " + list.size() + " 条记录");
+        return list;
     }
 }

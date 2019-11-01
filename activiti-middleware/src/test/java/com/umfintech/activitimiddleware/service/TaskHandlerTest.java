@@ -17,7 +17,29 @@ public class TaskHandlerTest {
     public void getAllTask() {
         List<Task> list = ts.getAllTask();
         Assert.assertNotNull(list);
+        printTaskList(list);
+    }
 
+    @Test
+    public void getAllTaskByUserID() {
+        List<Task> list = ts.getAllTaskByUserID("smallyu");
+        Assert.assertNotNull(list);
+        printTaskList(list);
+    }
+
+    @Test
+    public void taskAssignee() {
+        Assert.assertFalse(ts.taskAssignee("aabbcc", "aabbcc"));
+        Assert.assertTrue(ts.taskAssignee("2505", "smallyu"));
+    }
+
+    @Test
+    public void completePersonalTask(){
+        Assert.assertFalse(ts.completePersonalTask("6666"));
+//        Assert.assertTrue(ts.completePersonalTask("2505"));
+    }
+
+    private void printTaskList(List<Task> list) {
         for(Task task : list){
             logger.info("------------------------");
             logger.info("Task ID: " + task.getId());
@@ -26,13 +48,7 @@ public class TaskHandlerTest {
             logger.info("Task Assignee: " + task.getAssignee());
             logger.info("ProcessInstance ID: " + task.getProcessInstanceId());
             logger.info("Excution ID: " + task.getExecutionId());
-            logger.info("ProcessDefinition ID: " + task.getProcessDefinitionId());
+            logger.info("ProcessDefinitionHandler ID: " + task.getProcessDefinitionId());
         }
-    }
-
-    @Test
-    public void taskAssignee() {
-        Assert.assertFalse(ts.taskAssignee("aabbcc", "aabbcc"));
-        Assert.assertTrue(ts.taskAssignee("2505", "smallyu"));
     }
 }

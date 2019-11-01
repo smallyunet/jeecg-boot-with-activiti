@@ -120,6 +120,7 @@ public class ShiroConfig {
 
 		// TODO
 		filterChainDefinitionMap.put("/test/**", "anon");
+		filterChainDefinitionMap.put("/flow/**", "anon");
 
 		//websocket排除
 		filterChainDefinitionMap.put("/websocket/**", "anon");

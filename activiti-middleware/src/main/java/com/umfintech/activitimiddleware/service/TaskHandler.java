@@ -39,7 +39,7 @@ public class TaskHandler {
      * @param userID
      * @return
      */
-    public List<Task> getAllTaskByUserID(String userID) {
+    public List<Task> getTaskByUserID(String userID) {
         List<Task> list = taskService
                 .createTaskQuery()  //创建查询任务对象
                 .taskAssignee(userID)
@@ -69,15 +69,31 @@ public class TaskHandler {
      * @description 根据taskID完成任务
      * @param taskID
      */
-    public boolean completePersonalTask(String taskID){
+    public boolean completeTaskByTaskID(String taskID){
         try {
             processEngine.getTaskService()
                     .complete(taskID);
         } catch (ActivitiObjectNotFoundException e) {
-            logger.info("[任务完成失败] " + e.getMessage());
+            logger.info("[任务完成操作失败] " + e.getMessage());
             return false;
         }
-        logger.info("[任务完成成功] [taskID=" + taskID + "]");
+        logger.info("[任务完成操作成功] [taskID=" + taskID + "]");
+        return true;
+    }
+
+    /**
+     * @description 根据taskID删除任务
+     * @param taskID
+     */
+    public boolean deleteTaskByTaskID(String taskID){
+        try {
+            processEngine.getTaskService()
+                    .deleteTask(taskID, true);
+        } catch (ActivitiObjectNotFoundException e) {
+            logger.info("[任务删除操作失败] " + e.getMessage());
+            return false;
+        }
+        logger.info("[任务删除操作成功] [taskID=" + taskID + "]");
         return true;
     }
 }

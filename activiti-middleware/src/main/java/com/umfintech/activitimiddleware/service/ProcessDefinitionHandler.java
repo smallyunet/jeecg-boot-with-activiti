@@ -1,10 +1,7 @@
 /* CopyRight UMF */
 package com.umfintech.activitimiddleware.service;
 
-import org.activiti.engine.ActivitiIllegalArgumentException;
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
-import org.activiti.engine.RepositoryService;
+import org.activiti.engine.*;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.slf4j.Logger;
@@ -50,10 +47,27 @@ public class ProcessDefinitionHandler {
      * @return
      */
     public List<ProcessDefinition> getAllProcessDefinition() {
-        List<ProcessDefinition> list = processEngine.getRepositoryService()//与流程定义和部署对象相关的Service
+        List<ProcessDefinition> list = repositoryService//与流程定义和部署对象相关的Service
                 .createProcessDefinitionQuery()//创建一个流程定义的查询
                 .list();
         logger.info("[查询全部流程模板] 共 " + list.size() + " 条记录");
         return list;
+    }
+
+    /**
+     * @description 根据deploymentID删除流程模板
+     * @param deploymentID
+     */
+    public boolean deleteProcessDefinitionByDeploymentID(String deploymentID) {
+        // 第二个参数开启级联删除，否则流程实例会自动删除，但任务不会
+        // 在流程模板和流程实例被删除的情况下，任务无法完成，也无法删除
+        try {
+            repositoryService.deleteDeployment(deploymentID, true);
+        } catch (ActivitiObjectNotFoundException e) {
+            logger.info("[删除流程模板失败] [deploymentID=" + deploymentID + "]");
+            return false;
+        }
+        logger.info("[删除流程模板成功] [deploymentID=" + deploymentID + "]");
+        return true;
     }
 }

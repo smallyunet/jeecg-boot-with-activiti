@@ -9,6 +9,8 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 /**
  * @description 流程控制
  * @author wangyu
@@ -36,8 +38,16 @@ public class ProcessHandler {
             logger.error("[流程实例启动失败] " + e.getMessage());
             return false;
         }
-        logger.info("[流程实例启动成功] 流程实例ID: " + processInstance.getId() + "流程模板ID：" + processInstance.getProcessDefinitionId());
+        logger.info("[流程实例启动成功] 流程实例ID: " + processInstance.getId() + " 流程模板ID：" + processInstance.getProcessDefinitionId());
         return true;
+    }
+
+    public  List<ProcessInstance> getAllProcessInstance(){
+        List<ProcessInstance> list = runtimeService//表示正在执行的流程实例和执行对象
+                .createProcessInstanceQuery()//创建流程实例查询
+                .list();
+        logger.info("[查询全部流程] 共 " + list.size() + " 条记录");
+        return list;
     }
 
     /**
@@ -45,7 +55,7 @@ public class ProcessHandler {
      * @param processInstanceId
      * @return
      */
-    public boolean isProcessEnd(String processInstanceId){
+    public boolean isProcessInstanceEnd(String processInstanceId){
         ProcessInstance pi = runtimeService//表示正在执行的流程实例和执行对象
                 .createProcessInstanceQuery()//创建流程实例查询
                 .processInstanceId(processInstanceId)//使用流程实例ID查询

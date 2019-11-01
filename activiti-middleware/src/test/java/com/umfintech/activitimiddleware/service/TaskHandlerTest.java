@@ -21,8 +21,8 @@ public class TaskHandlerTest {
     }
 
     @Test
-    public void getAllTaskByUserID() {
-        List<Task> list = ts.getAllTaskByUserID("smallyu");
+    public void getTaskByUserID() {
+        List<Task> list = ts.getTaskByUserID("smallyu");
         Assert.assertNotNull(list);
         printTaskList(list);
     }
@@ -34,9 +34,14 @@ public class TaskHandlerTest {
     }
 
     @Test
-    public void completePersonalTask(){
-        Assert.assertFalse(ts.completePersonalTask("6666"));
-//        Assert.assertTrue(ts.completePersonalTask("2505"));
+    public void completeTaskByTaskID(){
+//        Assert.assertFalse(ts.completeTaskByTaskID("6666"));
+        Assert.assertTrue(ts.completeTaskByTaskID("25005"));
+    }
+
+    @Test
+    public void deleteTaskByTaskID(){
+        Assert.assertFalse(ts.deleteTaskByTaskID("25005"));
     }
 
     private void printTaskList(List<Task> list) {

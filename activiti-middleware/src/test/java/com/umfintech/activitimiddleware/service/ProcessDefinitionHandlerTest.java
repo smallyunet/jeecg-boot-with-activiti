@@ -19,11 +19,12 @@ public class ProcessDefinitionHandlerTest {
 
     @Test
     public void deploymentProcessDefinition_classpath(){
-        Assert.assertEquals(false, dpf.deploymentProcessDefinition_classpath("aabbcc"));
+//        Assert.assertEquals(false, dpf.deploymentProcessDefinition_classpath("aabbcc"));
+        Assert.assertEquals(true, dpf.deploymentProcessDefinition_classpath("test"));
     }
 
     @Test
-    public void getHistoryTaskByUserID(){
+    public void getAllProcessDefinition(){
         List<ProcessDefinition> list = dpf.getAllProcessDefinition();
         for(ProcessDefinition pd:list){
             logger.info("-------------------------");
@@ -35,5 +36,10 @@ public class ProcessDefinitionHandlerTest {
             logger.info("资源名称png文件: "+pd.getDiagramResourceName());
             logger.info("部署对象ID: "+pd.getDeploymentId());
         }
+    }
+
+    @Test
+    public void deleteProcessDefinitionByDeploymentID() {
+        dpf.deleteProcessDefinitionByDeploymentID("00000");
     }
 }

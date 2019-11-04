@@ -42,6 +42,10 @@ public class ProcessHandler {
         return true;
     }
 
+    /**
+     * @description 查询所有流程实例
+     * @return
+     */
     public  List<ProcessInstance> getAllProcessInstance(){
         List<ProcessInstance> list = runtimeService//表示正在执行的流程实例和执行对象
                 .createProcessInstanceQuery()//创建流程实例查询

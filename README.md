@@ -6,7 +6,7 @@ mysql 版本：5.X.X
    
 ---
 
-**描述**：基于jeecg-boot免费版，加入了对activiti的支持，使用mysql数据库（可自行更改）。目前只是一个类似脚手架的starter，并没有实现完整的页面等功能，一是开发未完成，二是jeecg-boot将此功能作为商业版出售，暂不计划完全开源。
+**描述**：基于jeecg-boot免费版，加入了对activiti的支持，使用mysql数据库（可自行更改）。当前项目是一个类似脚手架的starter，因为jeecg-boot将此功能作为商业版出售，暂不完全开源我们的版本。
 
 **起因**：jeecg-boot商业版提供了对activiti的集成，实现了工作流的功能，免费版没有。
 
@@ -17,3 +17,5 @@ mysql 版本：5.X.X
 - 流程实例
 - 任务
 - 历史流程实例、任务
+
+**工作流在线编辑器**：参考 [smallyunet/activiti-desginer-jquery](https://github.com/smallyunet/activiti-desginer-jquery)

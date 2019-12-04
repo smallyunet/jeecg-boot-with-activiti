@@ -14,7 +14,7 @@ mysql 版本：5.X.X
 
 **工作流在线编辑器**：参考 [smallyunet/activiti-desginer-jquery](https://github.com/smallyunet/activiti-desginer-jquery)
 
-**目前包含的CRUD示例**：    
+**目前包含的示例**：    
 - 流程模板
 - 流程实例
 - 任务

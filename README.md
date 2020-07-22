@@ -2,11 +2,11 @@
 
 jeecg-boot 版本： 2.1.1（发布日期：20191021）    
 activiti 版本：6.0.0      
-mysql 版本：5.X.X
+mysql 版本：5.x.x +
    
 ---
 
-**描述**：基于jeecg-boot免费版，加入了对activiti的支持，使用mysql数据库（可自行更改）。当前项目是一个类似脚手架的starter，因为jeecg-boot将此功能作为商业版出售，暂不完全开源我们的版本。
+**描述**：基于jeecg-boot免费版，加入了对activiti的支持，使用mysql数据库（可自行更改）。当前项目是一个类似脚手架的starter。
 
 **起因**：jeecg-boot商业版提供了对activiti的集成，实现了工作流的功能，免费版没有。
 

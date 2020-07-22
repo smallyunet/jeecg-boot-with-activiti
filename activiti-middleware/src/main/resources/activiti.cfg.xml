@@ -8,9 +8,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
         <!-- 连接数据的配置 -->
         <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://10.10.144.101:4000/activiti?characterEncoding=utf8"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/activiti?characterEncoding=utf8"/>
         <property name="jdbcUsername" value="root"/>
-        <property name="jdbcPassword" value=""/>
+        <property name="jdbcPassword" value="root"/>
         <!--  不自动创建表，需要表存在 "false";
               先删除表，再创建表  "create-drop";
               如果表不存在，先创建表"true";
